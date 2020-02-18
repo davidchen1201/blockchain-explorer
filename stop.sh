@@ -3,7 +3,7 @@
 #
 #    SPDX-License-Identifier: Apache-2.0
 #
-
+rm -fr wallet
 EXPLORER_PROCESS_ID=$(ps aux  |  grep -v "awk"  |  awk '/name - hyperledger-explorer/ {print $2}')
 
 if [ $EXPLORER_PROCESS_ID > 0 ]

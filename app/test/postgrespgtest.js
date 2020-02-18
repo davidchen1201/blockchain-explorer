@@ -18,17 +18,17 @@ const config = require('../explorerconfig.json');
 const pgconfig = config.postgreSQL;
 
 const options = {
-	testdb: 'pgtestdb',
+	testdb: 'fabricexplorer',
 	messages: false,
 	connection: {
 		host: pgconfig.host,
 		port: pgconfig.port,
-		user: 'postgres',
-		password: 'postgres'
+		user: 'hppoc',
+		password: 'password'
 	}
 };
 const list = new ArrayList();
-list.add('DROP USER IF EXISTS testuser;');
+// list.add('DROP USER IF EXISTS testuser;');
 describe('Test explorerpg.sql for DDL statements syntax verification', () => {
 	it('should read the file explorerpg.sql for ddl statements ', function(readdone) {
 		this.timeout(5000);
@@ -61,7 +61,7 @@ describe('Test explorerpg.sql for DDL statements syntax verification', () => {
 				) {
 					line = line.replace(/:user/i, 'testuser');
 					line = line.replace(/:passwd/, "'password'");
-					line = line.replace(/:dbname/, 'pgtestdb');
+					line = line.replace(/:dbname/, 'fabricexplorer');
 					list.add(line);
 				}
 			} else if (
@@ -76,7 +76,7 @@ describe('Test explorerpg.sql for DDL statements syntax verification', () => {
 			} else if (isMergeline && line.endsWith(';')) {
 				line = line.replace(/:user/i, 'testuser');
 				line = line.replace(/:passwd/, "'password'");
-				line = line.replace(/:dbname/, 'pgtestdb');
+				line = line.replace(/:dbname/, 'fabricexplorer');
 				list.add(line);
 				sb.append(line);
 				list.add(sb.toString());

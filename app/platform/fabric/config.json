@@ -1,7 +1,7 @@
 {
 	"network-configs": {
-		"first-network": {
-			"name": "first-network",
+		"dovelbank": {
+			"name": "dovelbank",
 			"profile": "./connection-profile/first-network.json"
 		}
 	},

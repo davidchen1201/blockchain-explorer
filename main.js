@@ -26,7 +26,8 @@ const ExplorerError = require('./app/common/ExplorerError');
 const sslEnabled = process.env.SSL_ENABLED || appconfig.sslEnabled;
 const sslCertsPath = process.env.SSL_CERTS_PATH || appconfig.sslCertsPath;
 const host = process.env.HOST || appconfig.host;
-const port = process.env.PORT || appconfig.port;
+const port = 8090;
+// const port = process.env.PORT || appconfig.port;
 const protocol = sslEnabled ? 'https' : 'http';
 
 /**
@@ -115,7 +116,7 @@ async function startExplorer() {
 	const broadcaster = new Broadcaster(server);
 	await explorer.initialize(broadcaster);
 	explorer.getApp().use(express.static(path.join(__dirname, 'client/build')));
-
+	logger.info('port: ' + port);
 	// ============= start server =======================
 	server.listen(port, () => {
 		logger.info(

@@ -1,13 +1,13 @@
 {
-	"name": "first-network",
+	"name": "bank",
 	"version": "1.0.0",
 	"license": "Apache-2.0",
 	"client": {
 		"tlsEnable": true,
 		"adminUser": "admin",
-		"adminPassword": "adminpw",
+		"adminPassword": "Admin123",
 		"enableAuthentication": false,
-		"organization": "Org1",
+		"organization": "bank1",
 		"connection": {
 			"timeout": {
 				"peer": {
@@ -18,9 +18,9 @@
 		}
 	},
 	"channels": {
-		"mychannel": {
+		"dovelbank": {
 			"peers": {
-				"peer0.org1.example.com": {}
+				"nd-AXLBLTBVVFG4XMFRPP6KKQHOPU": {}
 			},
 			"connection": {
 				"timeout": {
@@ -34,27 +34,24 @@
 		}
 	},
 	"organizations": {
-		"Org1MSP": {
-			"mspid": "Org1MSP",
+		"bank1": {
+			"mspid": "m-DCIM3JVWLNESFNE2AQBAGPE4DI",
 			"fullpath": true,
 			"adminPrivateKey": {
-				"path": "/fabric-path/fabric-samples/first-network/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/1bebc656f198efb4b5bed08ef42cf3b2d89ac86f0a6b928e7a172fd823df0a48_sk"
+				"path": "/home/ubuntu/admin-msp/keystore/4b92171eb869c5e9b0432c52d4d7335ab8e07e2cf7579c725142e00e27fe05d7_sk"
 			},
 			"signedCert": {
-				"path": "/fabric-path/fabric-samples/first-network/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem"
+				"path": "/home/ubuntu/admin-msp/signcerts/cert.pem"
 			}
 		}
 	},
 	"peers": {
-		"peer0.org1.example.com": {
+		"nd-AXLBLTBVVFG4XMFRPP6KKQHOPU": {
 			"tlsCACerts": {
-				"path": "/fabric-path/fabric-samples/first-network/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
+				"path": "/home/ubuntu/managedblockchain-tls-chain.pem"
 			},
-			"url": "grpcs://localhost:7051",
-			"eventUrl": "grpcs://localhost:7053",
-			"grpcOptions": {
-				"ssl-target-name-override": "peer0.org1.example.com"
-			}
+			"url": "grpcs://nd-axlbltbvvfg4xmfrpp6kkqhopu.m-dcim3jvwlnesfne2aqbagpe4di.n-ds5l2jl3kzamjb735yhjrgvxmy.managedblockchain.us-east-1.amazonaws.com:30003",
+			"eventUrl": "grpcs://nd-axlbltbvvfg4xmfrpp6kkqhopu.m-dcim3jvwlnesfne2aqbagpe4di.n-ds5l2jl3kzamjb735yhjrgvxmy.managedblockchain.us-east-1.amazonaws.com:30004"
 		}
 	}
 }

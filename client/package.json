@@ -63,7 +63,7 @@
 		"eject": "react-scripts eject",
 		"lint": "eslint"
 	},
-	"proxy": "http://localhost:8080/",
+	"proxy": "http://localhost:8090/",
 	"devDependencies": {
 		"@wdio/cli": "^5.10.4",
 		"@wdio/dot-reporter": "^5.9.3",

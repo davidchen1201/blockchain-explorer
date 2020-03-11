@@ -376,7 +376,6 @@ class FabricClient {
 		try {
 			channel = await this.hfc_client.getChannel(channel_name);
 			// Enable discover
-
 			await this.initializeChannelFromDiscover(channel_name);
 		} catch (error) {
 			logger.error(
@@ -393,11 +392,6 @@ class FabricClient {
 		);
 		// Setting channel_genesis_hash to map
 		this.setChannelGenHash(channel_name, channel_genesis_hash);
-		logger.debug(
-			'Channel genesis hash for channel [%s] >> %s',
-			channel_name,
-			channel_genesis_hash
-		);
 		logger.debug(
 			'Channel genesis hash for channel [%s] >> %s',
 			channel_name,
@@ -626,6 +620,10 @@ class FabricClient {
 	}
 
 	async getGenesisBlockFromOrderer(channel, orderer) {
+		if (!orderer) {
+			logger.debug('getGenesisBlockFromOrderer if orderer is null switch orderer');
+			orderer = this.switchOrderer(channel);
+		}
 		try {
 			const request = {
 				orderer: orderer,
@@ -667,8 +665,8 @@ class FabricClient {
 			const endpoints = channel._discovery_results.orderers[mspid].endpoints;
 			for (const value of endpoints) {
 				if (value._offline === undefined) {
-					logger.debug('Switch orderer : ', value.host);
-					neworderer = channel.getOrderer(`${value.host}:${value.port}`);
+					logger.debug('channel.getOrderers(): ' + channel.getOrderers());
+					neworderer = channel.getOrderer(`grpcs://${value.host}:${value.port}`);
 					break;
 				}
 			}
@@ -753,7 +751,9 @@ class FabricClient {
 	getChannelNames() {
 		return Array.from(this.channelsGenHash.keys());
 	}
-
+	getChannelValues() {
+		return Array.from(this.channelsGenHash.values());
+	}
 	/**
 	 *
 	 *

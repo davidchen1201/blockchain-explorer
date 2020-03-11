@@ -412,7 +412,6 @@ class SyncServices {
 			return 'Block already in processing';
 		}
 		blocksInProcess.push(blockPro_key);
-
 		logger.debug('New Block  >>>>>>> %j', block);
 		let channel_genesis_hash = client.getChannelGenHash(channel_name);
 		// Checking block is channel CONFIG block
@@ -670,7 +669,6 @@ class SyncServices {
 				_self.platform.send(notify);
 			}
 		} else {
-			logger.error('Failed to process the block %j', block);
 			logger.error('Failed to process the block %j', block);
 		}
 		const index = blocksInProcess.indexOf(blockPro_key);

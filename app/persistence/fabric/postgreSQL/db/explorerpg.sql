@@ -1,7 +1,7 @@
 --
 --    SPDX-License-Identifier: Apache-2.0
 --
-DROP USER IF EXISTS testuser
+DROP USER IF EXISTS testuser ;
 -- CREATE USER :user WITH PASSWORD :passwd;
 DROP DATABASE IF EXISTS :dbname;
 CREATE DATABASE :dbname owner :user;
@@ -56,9 +56,9 @@ DROP TABLE IF EXISTS peer_ref_chaincode;
 CREATE TABLE peer_ref_chaincode
 (
   id SERIAL PRIMARY KEY,
-  peerid varchar(64) DEFAULT NULL,
-  chaincodeid varchar(64) DEFAULT NULL,
-  cc_version varchar(64) DEFAULT NULL,
+  peerid varchar(256) DEFAULT NULL,
+  chaincodeid varchar(256) DEFAULT NULL,
+  cc_version varchar(256) DEFAULT NULL,
   channelid character varying(256) DEFAULT NULL,
   createdt Timestamp DEFAULT NULL
 );
@@ -100,12 +100,12 @@ CREATE TABLE peer
   id SERIAL PRIMARY KEY,
   org integer DEFAULT NULL,
   channel_genesis_hash character varying(256) DEFAULT NULL,
-  mspid varchar(64) DEFAULT NULL,
-  requests varchar(64) DEFAULT NULL,
-  events varchar(64) DEFAULT NULL,
-  server_hostname varchar(64) DEFAULT NULL,
+  mspid varchar(256) DEFAULT NULL,
+  requests varchar(256) DEFAULT NULL,
+  events varchar(256) DEFAULT NULL,
+  server_hostname varchar(256) DEFAULT NULL,
   createdt timestamp DEFAULT NULL,
-  peer_type character varying(64) DEFAULT NULL
+  peer_type character varying(256) DEFAULT NULL
 );
 ALTER table peer owner to :user;
 -- ---------------------------
@@ -117,9 +117,9 @@ CREATE TABLE peer_ref_channel
 (
   id SERIAL PRIMARY KEY,
   createdt Timestamp DEFAULT NULL,
-  peerid varchar(64),
+  peerid varchar(256),
   channelid character varying(256),
-  peer_type character varying(64) DEFAULT NULL
+  peer_type character varying(256) DEFAULT NULL
 );
 ALTER table peer_ref_channel owner to :user;
 
@@ -134,8 +134,8 @@ DROP TABLE IF EXISTS orderer;
 CREATE TABLE orderer
 (
   id SERIAL PRIMARY KEY,
-  requests varchar(64) DEFAULT NULL,
-  server_hostname varchar(64) DEFAULT NULL,
+  requests varchar(256) DEFAULT NULL,
+  server_hostname varchar(256) DEFAULT NULL,
   createdt timestamp DEFAULT NULL
 );
 ALTER table orderer owner to :user;
@@ -160,7 +160,7 @@ CREATE TABLE transactions
   read_set json default NULL,
   write_set json default NULL,
   channel_genesis_hash character varying(256) DEFAULT NULL,
-  validation_code character varying(50) DEFAULT NULL,
+  validation_code character varying(256) DEFAULT NULL,
   envelope_signature character varying DEFAULT NULL,
   payload_extension character varying DEFAULT NULL,
   creator_id_bytes character varying DEFAULT NULL,

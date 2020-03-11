@@ -7,7 +7,8 @@
 		"adminUser": "admin",
 		"adminPassword": "Admin123",
 		"enableAuthentication": false,
-		"organization": "bank1",
+		"organization": "m-DCIM3JVWLNESFNE2AQBAGPE4DI",
+		"channel": "dovelbank",
 		"connection": {
 			"timeout": {
 				"peer": {
@@ -20,7 +21,31 @@
 	"channels": {
 		"dovelbank": {
 			"peers": {
-				"nd-AXLBLTBVVFG4XMFRPP6KKQHOPU": {}
+				"nd-AXLBLTBVVFG4XMFRPP6KKQHOPU": {
+					"endorsingPeer": true,
+					"chaincodeQuery": true,
+					"ledgerQuery": true,
+					"eventSource": true
+				}
+			},
+			"connection": {
+				"timeout": {
+					"peer": {
+						"endorser": "6000",
+						"eventHub": "6000",
+						"eventReg": "6000"
+					}
+				}
+			}
+		},
+		"ourchannel": {
+			"peers": {
+				"nd-AXLBLTBVVFG4XMFRPP6KKQHOPU": {
+					"endorsingPeer": true,
+					"chaincodeQuery": true,
+					"ledgerQuery": true,
+					"eventSource": true
+				}
 			},
 			"connection": {
 				"timeout": {
@@ -34,11 +59,16 @@
 		}
 	},
 	"organizations": {
-		"bank1": {
+		"m-DCIM3JVWLNESFNE2AQBAGPE4DI": {
+			"tlsCACerts": {
+				"path": "/home/ubuntu/managedblockchain-tls-chain.pem"
+			},
 			"mspid": "m-DCIM3JVWLNESFNE2AQBAGPE4DI",
+			"peers": ["nd-AXLBLTBVVFG4XMFRPP6KKQHOPU"],
 			"fullpath": true,
+			"certificateAuthorities": ["ca-m-dcim3jvwlnesfne2aqbagpe4di"],
 			"adminPrivateKey": {
-				"path": "/home/ubuntu/admin-msp/keystore/4b92171eb869c5e9b0432c52d4d7335ab8e07e2cf7579c725142e00e27fe05d7_sk"
+				"path": "/home/ubuntu/admin-msp/keystore/8857ce8a5ed285da761c14ba784b9e59cd1220837950e3c6540cb195553e4d1c_sk"
 			},
 			"signedCert": {
 				"path": "/home/ubuntu/admin-msp/signcerts/cert.pem"
@@ -52,6 +82,30 @@
 			},
 			"url": "grpcs://nd-axlbltbvvfg4xmfrpp6kkqhopu.m-dcim3jvwlnesfne2aqbagpe4di.n-ds5l2jl3kzamjb735yhjrgvxmy.managedblockchain.us-east-1.amazonaws.com:30003",
 			"eventUrl": "grpcs://nd-axlbltbvvfg4xmfrpp6kkqhopu.m-dcim3jvwlnesfne2aqbagpe4di.n-ds5l2jl3kzamjb735yhjrgvxmy.managedblockchain.us-east-1.amazonaws.com:30004"
+		}
+	},
+	"orderers": {
+		"orderer.n-ds5l2jl3kzamjb735yhjrgvxmy.managedblockchain.us-east-1.amazonaws.com": {
+			"tlsCACerts": {
+				"path": "/home/ubuntu/managedblockchain-tls-chain.pem"
+			},
+			"url": "grpcs://orderer.n-ds5l2jl3kzamjb735yhjrgvxmy.managedblockchain.us-east-1.amazonaws.com:30001"
+		}
+	},
+	"certificateAuthorities": {
+		"ca-Org1": {
+			"url": "https://ca.m-dcim3jvwlnesfne2aqbagpe4di.n-ds5l2jl3kzamjb735yhjrgvxmy.managedblockchain.us-east-1.amazonaws.com:30002",
+			"httpOptions": {
+				"verify": false
+			},
+			"caName": "m-DCIM3JVWLNESFNE2AQBAGPE4DI",
+			"tlsCACerts": {
+				"path": "/home/ubuntu/managedblockchain-tls-chain.pem"
+			},
+			"registrar": {
+				"enrollId": "admin",
+				"enrollSecret": "Admin123"
+			}
 		}
 	}
 }

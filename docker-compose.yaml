@@ -14,7 +14,6 @@ networks:
       name: net_byfn
 
 services:
-
   explorerdb.mynetwork.com:
     image: hyperledger/explorer-db:latest
     container_name: explorerdb.mynetwork.com
@@ -30,6 +29,7 @@ services:
       retries: 5
     volumes:
       - ./app/persistence/fabric/postgreSQL/db/createdb.sh:/docker-entrypoint-initdb.d/createdb.sh
+      - ./app/persistence/fabric/postgreSQL/db/explorerpg.sql:/opt/explorerpg.sql
       - pgdata:/var/lib/postgresql/data
     networks:
       - mynetwork.com
@@ -48,9 +48,10 @@ services:
       - LOG_CONSOLE_STDOUT=true
       - DISCOVERY_AS_localhost=false
     volumes:
-      - ./examples/net1/config.json:/opt/explorer/app/platform/fabric/config.json
-      - ./examples/net1/connection-profile:/opt/explorer/app/platform/fabric/connection-profile
-      - ./examples/net1/crypto:/tmp/crypto
+      - ./app/platform/fabric/config.json:/opt/explorer/app/platform/fabric/config.json
+      - ./app/platform/fabric/connection-profile:/opt/explorer/app/platform/fabric/connection-profile
+      - ../../admin-msp/:/tmp/crypto
+      - ../../managedblockchain-tls-chain.pem:/tmp/crypto/managedblockchain-tls-chain.pem
       - walletstore:/opt/wallet
     command: sh -c "node /opt/explorer/main.js && tail -f /dev/null"
     ports:

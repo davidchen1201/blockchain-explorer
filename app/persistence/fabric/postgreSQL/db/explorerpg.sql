@@ -24,7 +24,8 @@ CREATE TABLE blocks
   prev_blockhash character varying(256) DEFAULT NULL,
   blockhash character varying(256) DEFAULT NULL,
   channel_genesis_hash character varying(256) DEFAULT NULL,
-  blksize integer DEFAULT NULL
+  blksize integer DEFAULT NULL,
+  network_name varchar(255)
 );
 
 ALTER table blocks owner to :user;
@@ -42,7 +43,8 @@ CREATE TABLE chaincodes
   path character varying(255) DEFAULT NULL,
   channel_genesis_hash character varying(256) DEFAULT NULL,
   txcount integer DEFAULT 0,
-  createdt Timestamp DEFAULT NULL
+  createdt Timestamp DEFAULT NULL,
+  network_name varchar(255)
 );
 
 ALTER table chaincodes owner to :user;
@@ -60,7 +62,8 @@ CREATE TABLE peer_ref_chaincode
   chaincodeid varchar(256) DEFAULT NULL,
   cc_version varchar(256) DEFAULT NULL,
   channelid character varying(256) DEFAULT NULL,
-  createdt Timestamp DEFAULT NULL
+  createdt Timestamp DEFAULT NULL,
+  network_name varchar(255)
 );
 ALTER table peer_ref_chaincode owner to :user;
 
@@ -83,7 +86,8 @@ CREATE TABLE channel
   channel_config bytea default NULL,
   channel_block bytea DEFAULT NULL,
   channel_tx bytea DEFAULT NULL,
-  channel_version character varying(128) DEFAULT NULL
+  channel_version character varying(128) DEFAULT NULL,
+  network_name varchar(255)
 );
 
 ALTER table channel owner to :user;
@@ -105,7 +109,8 @@ CREATE TABLE peer
   events varchar(256) DEFAULT NULL,
   server_hostname varchar(256) DEFAULT NULL,
   createdt timestamp DEFAULT NULL,
-  peer_type character varying(256) DEFAULT NULL
+  peer_type character varying(256) DEFAULT NULL,
+  network_name varchar(255)
 );
 ALTER table peer owner to :user;
 -- ---------------------------
@@ -119,7 +124,8 @@ CREATE TABLE peer_ref_channel
   createdt Timestamp DEFAULT NULL,
   peerid varchar(256),
   channelid character varying(256),
-  peer_type character varying(256) DEFAULT NULL
+  peer_type character varying(256) DEFAULT NULL,
+  network_name varchar(255)
 );
 ALTER table peer_ref_channel owner to :user;
 
@@ -136,7 +142,8 @@ CREATE TABLE orderer
   id SERIAL PRIMARY KEY,
   requests varchar(256) DEFAULT NULL,
   server_hostname varchar(256) DEFAULT NULL,
-  createdt timestamp DEFAULT NULL
+  createdt timestamp DEFAULT NULL,
+  network_name varchar(255)
 );
 ALTER table orderer owner to :user;
 
@@ -169,7 +176,8 @@ CREATE TABLE transactions
   tx_response character varying DEFAULT NULL,
   payload_proposal_hash character varying DEFAULT NULL,
   endorser_id_bytes character varying DEFAULT NULL,
-  endorser_signature character varying DEFAULT NULL
+  endorser_signature character varying DEFAULT NULL,
+  network_name varchar(255)
 );
 
 ALTER table transactions owner to :user;
